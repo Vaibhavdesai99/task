@@ -7,4 +7,7 @@ Chicken
 Mutton
 
 
+BEANS 
+Maggi
+
 Thanks
