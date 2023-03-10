@@ -8,7 +8,7 @@
 // console.log(document.getElementsByClassName("list-grpup"));
 
 
-//Make the 3rd element have green backgroundcolor:
+//Make the 3rd element have green background-color:
 const items = document.getElementsByClassName('list-group-item');
 console.log(items);
 
