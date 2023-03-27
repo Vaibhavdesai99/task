@@ -1,8 +1,6 @@
-
-//To push all post here we created :-posts[]
 let posts = [];
 
-//Creating Post:-
+
 function createPost(post) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -11,9 +9,6 @@ function createPost(post) {
     }, 1000);
   });
 }
-
-
-//update the latest user activity time:-
 
 function updateLastUserActivityTime() {
   return new Promise((resolve) => {
@@ -24,7 +19,6 @@ function updateLastUserActivityTime() {
   });
 }
 
-// delete the last post :- 
 function deleteLastPost() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -38,46 +32,19 @@ function deleteLastPost() {
   });
 }
 
+async function main() {
+  await Promise.all([createPost({ title: "Post 1" }), updateLastUserActivityTime()]);
+  console.log("Posts:", posts);
+  console.log("Latest User Activity Time:", lastActivityTime);
 
+  await Promise.all([createPost({ title: "Post 2" }), updateLastUserActivityTime()]);
+  console.log("Posts:", posts);
+  console.log("Latest User Activity Time:", lastActivityTime);
 
-//Promise.all    => both func are independent :-
+  await deleteLastPost();
+  console.log("Posts after deletion:", posts);
+}
 
-Promise.all([createPost({ title: "Post 1" }), updateLastUserActivityTime()])
-  .then(() => {
-    console.log("Posts:", posts);
-    console.log("Latest User Activity Time:", lastActivityTime);
-    return Promise.all([
-      createPost({ title: "Post 2" }),
-      updateLastUserActivityTime(),
-    ]);
-    
-  })
-  .then(() => {
-    console.log("Posts:", posts);
-    console.log("Latest User Activity Time:", lastActivityTime);
-    return Promise.all([
-      createPost({ title: "Post 3" }),
-      updateLastUserActivityTime(),
-    ]);
-    
-  })
-  .then(() => {
-    console.log("Posts:", posts);
-    console.log("Latest User Activity Time:", lastActivityTime);
-    return Promise.all([
-      createPost({ title: "Post 4" }),
-      updateLastUserActivityTime(),
-    ]);
-    
-  })
-  .then(() => {
-    console.log("Posts:", posts);
-    console.log("Latest User Activity Time:", lastActivityTime);
-    return deleteLastPost();
-  })
-  .then(() => {
-    console.log("Posts after deletion:", posts);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+main().catch((error) => {
+  console.error(error);
+});
